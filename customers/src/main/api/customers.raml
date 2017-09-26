@@ -1,0 +1,303 @@
+#%RAML 1.0
+title: Customers
+version: v1
+#baseUri: https://local.deloitte.com/api/{version}/customers
+baseUri: https://mocksvc.mulesoft.com/mocks/a6666e7f-0ac9-404a-b40e-124adcafa5b4/api/{version}/customers
+mediaType: application/json
+types: 
+  address: 
+      properties:
+        addresstype:
+          description: "type of address eg home, office etc."
+          type: "string"
+          required: true
+          minLength: 1
+          maxLength: 10
+        firstline:
+          description: "Address Line"
+          type: "string"
+          required: false
+          minLength: 1
+          maxLength: 40  
+        secondline:
+          description: "Address Line"
+          type: "string"
+          required: false
+          minLength: 1
+          maxLength: 40
+        postcode:
+          description: "Postcode"
+          type: "string"
+          required: false
+          minLength: 1
+          maxLength: 10 
+        state:
+          description: "State"
+          type: "string"
+          required: false
+          minLength: 1
+          maxLength: 10 
+        country:
+          description: "Country"
+          type: "string"
+          required: false
+          minLength: 1
+          maxLength: 40           
+  customer:
+    properties:
+      customerid:
+        description: Identify a customer uniquely
+        type: string
+        required: false
+        minLength: 2
+        maxLength: 12
+      firstname:
+        description: Firstname of the customer
+        type: string
+        required: true
+        minLength: 1
+        maxLength: 40
+      surname:
+        description: Surname of the customer
+        type: string
+        required: true
+        minLength: 1
+        maxLength: 40
+      addresslist:
+        description: customer's address
+        type: address[]
+  customerInfo:
+    properties: 
+      customerid:
+        description: Identify a customer uniquely
+        type: string
+        required: true
+        minLength: 2
+        maxLength: 12
+      surname:
+        description: Surname of customer
+        type: string
+        required: true
+        minLength: 1
+        maxLength: 40
+      customerlink:
+        description: link to customer details
+        type: string
+        required: true
+        minLength: 1
+        maxLength: 60
+        example: http://{environment}/{version}/customers/customer/123491
+  customers:
+    description: Represent an array of customers
+    type: customer[]
+  addresses:
+    description: Represent an array of addreess
+    type: address[]
+  error:
+    properties: 
+      message:
+        description: Message for end user 
+        type: string
+        minLength: 1
+        maxLength: 40
+      details:
+        description: Describes details of the error
+        type: string
+        minLength: 1
+        maxLength: 60
+          
+/customers: 
+  displayName: customers
+  description: Operations on the collection of customers
+  get:
+    description: Retrieve a list of cusomters
+    queryParameters: 
+      fields:
+       type: string
+       description: An option to select fields for each customer, which could be comma separated.
+       required: false
+       example: surname
+      limit:
+       type: number
+       description: Provide the ability to limit the number of customers records to be retrieved.
+       required: false
+       default: 10
+       example: 5
+      offset:
+       type: number
+       description: Provide the ability to offset the customer records to be retrieved.
+       required: false
+       default: 0
+       example: 5    
+    responses: 
+      200:
+        headers: 
+          x-total-count:
+           description: Provide total count of customers records.
+           example: "20"
+        body: 
+          application/json:
+            type: customers
+            example: |
+                   [ { "customerid":"151001",
+                       "firstname":"David",
+                       "surname":"Edson",
+                              "addresslist":[
+                                         {"addresstype":"Home",
+                                          "firstline":"Unit-10",
+                                          "secondline":"800 Princes Highway,Carlton",
+                                          "postcode":"2217",
+                                          "state":"NSW",
+                                          "country":"Australia"},
+                                         {"addresstype":"Office",
+                                          "firstline":"10",
+                                          "secondline":"Kent Street, Sydney",
+                                          "postcode":"2000",
+                                          "state":"NSW",
+                                          "country":"Australia"}] 
+                           },
+                           {
+                            "customerid":"151002",
+                            "firstname":"Mady",
+                            "surname":"Philip",
+                            "addresslist":[
+                                           {"addresstype":"Home",
+                                            "firstline":"15/54",
+                                            "secondline":"Solander Street,Monterey",
+                                            "postcode":"2217",
+                                            "state":"NSW",
+                                            "country":"Australia"},
+                                           {"addresstype":"Office",
+                                            "firstline":"10",
+                                            "secondline":"Kent Street, Sydney",
+                                            "postcode":"2000",
+                                            "state":"NSW",
+                                            "country":"Australia"}] 
+                            }
+                          ]
+      404:
+        description: No customer records found
+        body:
+          application/json:
+            type: error
+                
+  /customer:
+    displayName: customer
+    description: Operation on a specific customer.
+    post:
+      description: Creates a new customer
+      body: 
+        application/json:
+          properties:
+          type: customer
+      responses:
+        201:
+         description: Successfully created a new customer record
+         body: 
+           application/json:
+             example: |
+              { "status" : "success",
+                "message" : "Customer record created successfully.",
+                "customerid":"151911"
+                 }
+        500:
+          description: Server Error
+          body: 
+            application/json:
+              type: error
+              example:
+                { "message": "Your request could not be completed.",
+                  "details": "Internal Server Error while processing the request."}
+                
+    /{customerId}:
+      displayName: customer
+      description: Operations specific to a unique customer. Once a customer is created you can retrieve, update and delete that customer record
+      get:
+        description: Retrieve details of a specific customer
+        responses: 
+          200:
+            body: 
+              application/json:
+                type: customer        
+          404:
+            body: 
+              application/json:
+                type: error
+                example: |
+                 { "message": "Customer record not found",
+                   "details": "No customer record found with given customerid"}       
+      put:
+        description: Update a customer record.Supports Address Update.
+        body: 
+          type: addresses
+        responses: 
+          200:
+            description: Given customer record updated successfully.
+            body: 
+              application/json:
+                example: |
+                 { "status" : "success",
+                   "message" : "Customer record updated successfully."}
+          404:
+            body: 
+              application/json:
+                type: error
+                example: |
+                 { "message": "Customer record not found",
+                   "details": "No customer record found with given customerid"}                    
+          500:
+           body: 
+            application/json:
+              type: error
+              example: | 
+                { "message": "Your request could not be processed.",
+                  "details": "Internal Server Error while processing the request."}                     
+      delete:
+        description: Delete an existing customer
+        responses: 
+          204:
+            description: Customer record successfully deleted.
+            body: 
+              application/json:
+                example: |
+                 { "status" : "success",
+                 "message" : "Customer record successfully deleted." }        
+          404:
+            body: 
+              application/json:
+                type: error
+                example: |
+                 { "message": "Customer record not found",
+                   "details": "No customer record found with given customerid"}  
+          500:
+           body: 
+            application/json:
+              type: error
+              example:
+                { "message": "Your request could not be processed.",
+                  "details": "Internal Server Error while processing the request."}
+      /orders:
+        displayName: Orders for a customer
+        description: BETA STATE Display orders for a customer
+        get:
+          description: Retrieve the list of active orders for a customer
+        put:
+          description: Update an order for the customer
+        /order:
+          displayName: order
+          description: Operations on a specific order related to a customer
+          post:
+            displayName: create a new order
+            description: Creates a new order
+          /{orderId}:
+            displayName: Order Details
+            description: Order Details of a specific order
+            get:
+              displayName: Retrieve a specific order
+            put:
+              displayName: Update an existing order
+            delete:
+              displayName: Delete an existing order
+      /products:
+        displayName: Products for a customer
+        description: BETA STATE Products for a customer

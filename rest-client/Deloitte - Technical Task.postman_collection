@@ -1,0 +1,196 @@
+{
+	"id": "ab13e760-59ef-0d69-ec0d-337b90f1a727",
+	"name": "Deloitte - Technical Task",
+	"description": "",
+	"order": [
+		"b5d28f52-53b6-90ce-3e1a-213cea119f0f",
+		"6de2cbaf-1d8c-62fd-5e54-40a4e7c0db72",
+		"28d91a95-eb58-2c3c-4d36-50bd42524c25",
+		"ad6ddc14-06d2-6d8a-1bda-aedb89a70708",
+		"597d2c89-b970-b584-05d9-0c80cb943b1b"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1506457242302,
+	"owner": "1568758",
+	"public": false,
+	"requests": [
+		{
+			"id": "28d91a95-eb58-2c3c-4d36-50bd42524c25",
+			"headers": "Authorization: Basic dGVzdFVzZXI6d2UkY29tODE=\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Basic dGVzdFVzZXI6d2UkY29tODE=",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://127.0.0.1:8081/api/v1/customers/customer",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "ab13e760-59ef-0d69-ec0d-337b90f1a727",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://127.0.0.1:8081/api/v1/customers/customer",
+			"description": "Create Customer",
+			"descriptionFormat": "html",
+			"time": 1506457557031,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n    \"firstname\": \"David\",\n    \"surname\": \"Edson\",\n    \"addresslist\": [\n        {\n            \"addresstype\": \"Home\",\n            \"firstline\": \"Unit-10\",\n            \"secondline\": \"Carlton\",\n            \"postcode\": \"2217\",\n            \"state\": \"NSW\",\n            \"country\": \"Australia\"\n        },\n        {\n            \"addresstype\": \"Office\",\n            \"firstline\": \"10\",\n            \"secondline\": \"KentStreet\",\n            \"postcode\": \"2000\",\n            \"state\": \"NSW\",\n            \"country\": \"Australia\"\n        }\n    ]\n}"
+		},
+		{
+			"id": "597d2c89-b970-b584-05d9-0c80cb943b1b",
+			"headers": "Authorization: Basic dGVzdFVzZXI6d2UkY29tODE=\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Basic dGVzdFVzZXI6d2UkY29tODE=",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://127.0.0.1:8081/api/v1/customers/customer/1111",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "DELETE",
+			"collectionId": "ab13e760-59ef-0d69-ec0d-337b90f1a727",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://127.0.0.1:8081/api/v1/customers/customer/1111",
+			"description": "Remove customer",
+			"descriptionFormat": "html",
+			"time": 1506457793803,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "6de2cbaf-1d8c-62fd-5e54-40a4e7c0db72",
+			"headers": "Authorization: Basic dGVzdFVzZXI6d2UkY29tODE=\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Basic dGVzdFVzZXI6d2UkY29tODE=",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://127.0.0.1:8081/api/v1/customers/customer/111",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "ab13e760-59ef-0d69-ec0d-337b90f1a727",
+			"data": null,
+			"dataMode": "params",
+			"name": "http://127.0.0.1:8081/api/v1/customers/customer/111",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1506457256484,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "ad6ddc14-06d2-6d8a-1bda-aedb89a70708",
+			"headers": "Authorization: Basic dGVzdFVzZXI6d2UkY29tODE=\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Basic dGVzdFVzZXI6d2UkY29tODE=",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://127.0.0.1:8081/api/v1/customers/customer/1111",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "ab13e760-59ef-0d69-ec0d-337b90f1a727",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://127.0.0.1:8081/api/v1/customers/customer/1111",
+			"description": "Update Customer's Address",
+			"descriptionFormat": "html",
+			"time": 1506457762077,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "[\n        {\n            \"addresstype\": \"Home\",\n            \"firstline\": \"Unit-10\",\n            \"secondline\": \"Carlton\",\n            \"postcode\": \"2217\",\n            \"state\": \"NSW\",\n            \"country\": \"Australia\"\n        }\n]"
+		},
+		{
+			"id": "b5d28f52-53b6-90ce-3e1a-213cea119f0f",
+			"headers": "Authorization: Basic dGVzdFVzZXI6d2UkY29tODE=\nCo: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Basic dGVzdFVzZXI6d2UkY29tODE=",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Co",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://127.0.0.1:8081/api/v1/customers",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "ab13e760-59ef-0d69-ec0d-337b90f1a727",
+			"data": null,
+			"dataMode": "params",
+			"name": "http://127.0.0.1:8081/api/v1/customers",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1506457245585,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		}
+	]
+}
